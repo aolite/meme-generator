@@ -3,33 +3,27 @@ import React from 'react'
 
 class MemeGenerator extends React.Component{
 
-    constructor () {
-        super();
-        this.state = {
-            topText: "",
-            bottomText: "",
-            randomImage: "http://i.imgflip.com/1bij.jpg",
-            allMemeImgs: []
-          }
-        
-          this.onChangeHandler = this.onChangeHandler.bind(this);
-          this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    state = {
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg",
+        allMemeImgs: []
     }
 
-    componentDidMount(){
+    componentDidMount () {
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
             .then (data=> this.setState ({allMemeImgs: data.data.memes}))
     }
 
-    onChangeHandler (event) {
+    onChangeHandler = (event) => {
         const {name, value} = event.target;
         this.setState({
             [name]: value
         });
     }
 
-    onSubmitHandler(event) {
+    onSubmitHandler = (event) => {
 
         // Prevent to reload the page
         event.preventDefault();
@@ -81,3 +75,16 @@ class MemeGenerator extends React.Component{
 }
 
 export default MemeGenerator
+
+
+/**
+ * Other modern/advanced React features/topics to learn:
+ * 
+ * Official React Context API - https://reactjs.org/docs/context.html
+ * Error Boundaries - https://reactjs.org/docs/error-boundaries.html
+ * render props - https://reactjs.org/docs/render-props.html
+ * Higher Order Components - https://reactjs.org/docs/higher-order-components.html
+ * React Router - https://reacttraining.com/react-router/core/guides/philosophy
+ * React Hooks - https://reactjs.org/docs/hooks-intro.html
+ * React lazy, memo, and Suspense - https://reactjs.org/blog/2018/10/23/react-v-16-6.html
+ */
